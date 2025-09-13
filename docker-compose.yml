@@ -8,5 +8,6 @@ services:
       - "5000:3000"
     environment:
       NODE_ENV: production
+      EARER_TOKEN_<SCHEME_NAME>: <enter your api key>
     restart: unless-stopped
     command: ["node", "build/index.js", "--transport=streamable-http"]
