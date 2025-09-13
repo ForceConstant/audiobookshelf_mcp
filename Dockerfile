@@ -1,20 +1,22 @@
-# Use an official Node.js runtime as a parent image
-FROM node:20-alpine
-
-# Set the working directory in the container
+FROM node:20-alpine AS builder
 WORKDIR /app
+# Copy the audiobookshelf_mcp project into the image
+COPY audiobookshelf_mcp/ ./
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install any needed packages
+# Install dependencies and build the TypeScript code
 RUN npm install
+RUN npm run build
 
-# Copy the rest of the application code
-COPY . .
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
 
-# Expose the port the app runs on
+# Copy only the built output and necessary runtime files
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
+
 EXPOSE 3000
 
-# Define the command to run the application
-CMD ["npm", "run", "generate"]
+# Run in StreamableHTTP mode as requested
+CMD ["node", "build/index.js", "--transport=streamable-http"]
