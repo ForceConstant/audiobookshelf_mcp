@@ -1,0 +1,2 @@
+#!/bin/bash
+docker run -it --rm -v "$(pwd):/app" audiobookshelf-mcp-generator openapi-mcp-generator --input external/audiobookshelf/docs/openapi.json --output audiobookshelf_mcp --transport=streamable-http --port=3000

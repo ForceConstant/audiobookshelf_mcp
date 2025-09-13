@@ -1,0 +1,3 @@
+[submodule "external/audiobookshelf"]
+	path = external/audiobookshelf
+	url = https://github.com/advplyr/audiobookshelf.git
