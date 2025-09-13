@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * MCP Server generated from OpenAPI spec for audiobookshelf-api v0.1.0
- * Generated on: 2025-09-13T14:23:41.880Z
+ * Generated on: 2025-09-13T21:02:34.622Z
  */
 
 // Load environment variables from .env file
@@ -47,7 +47,7 @@ interface McpToolDefinition {
  */
 export const SERVER_NAME = "audiobookshelf-api";
 export const SERVER_VERSION = "0.1.0";
-export const API_BASE_URL = "http://localhost:3000";
+export const API_BASE_URL = "http://audiobookshelf/api";
 
 /**
  * MCP Server instance
